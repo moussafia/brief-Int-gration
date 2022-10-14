@@ -17,7 +17,7 @@
 
 .main-style {
     min-height: 100vh;
-    background-color: rgb(235, 203, 161);
+    background-color: white;
     
  }
  .home a:hover{
@@ -39,11 +39,14 @@
     text-decoration: none;
 }
 .To-do,.In-Progress,.Done{
-    background-color: red;
+    background-color: rgb(25, 9, 22);
     text-align: center;
-    border:0.1em solid red;
+    border:0.1em solid rgb(25, 9, 22);
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
     color: white;
+}
+.add-task{
+    background-color: rgb(25, 9, 22);
 }
 
