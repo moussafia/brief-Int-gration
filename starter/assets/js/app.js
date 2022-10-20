@@ -2,73 +2,65 @@
  * In this file app.js you will find all CRUD functions name.
  * 
  */
-let title=document.getElementById('title');
-let type= document.querySelector("input[type='radio']:checked");
-let Priority=document.querySelector('#Priority');
-let Status=document.querySelector('#Status');
-let date=document.getElementById('date');
-let Description=document.getElementById('Description');
-let save=document.getElementById('save');
+let title = document.getElementById('title');
+let type = document.querySelector("input[type='radio']:checked");
+let Priority = document.querySelector('#Priority');
+let Status = document.querySelector('#Status');
+let date = document.getElementById('date');
+let Description = document.getElementById('Description');
+let save = document.getElementById('save');
 
 
 
 //create task
-    let dataScrumBoard;                                       //table pour enregistrer les data
-                if (localStorage.scrumBoardFile!=null){
-                      dataScrumBoard=JSON.parse(localStorage.scrumBoardFile);
-    }
-                else{
-                        dataScrumBoard=[];
-    }
-    ShowTask();
+let dataScrumBoard;                                       //table pour enregistrer les data
+if (localStorage.scrumBoardFile != null) {
+    dataScrumBoard = JSON.parse(localStorage.scrumBoardFile);
+}
+else {
+    dataScrumBoard = [];
+}
 
-save.onclick=function createTask() {
-   
+
+save.onclick = function createTask() {
+
     let addTask = {
-        title:title.value,
-        type:type.value,
-        Priority:Priority.value,
-        Status:Status.value,
-        date:date.value,
-        Description:Description.value,
-        save:save.value,
+        title: title.value,
+        type: type.value,
+        Priority: Priority.value,
+        Status: Status.value,
+        date: date.value,
+        Description: Description.value,
+        save: save.value,
     }
     dataScrumBoard.push(addTask);
-    
-        //enregistrer les data
-    localStorage.setItem('scrumBoardFile',  JSON.stringify(dataScrumBoard));
+
+    //enregistrer les data
+    localStorage.setItem('scrumBoardFile', JSON.stringify(dataScrumBoard));
     clearInput();
-        
-
     //affichage dans les tableaux
+    window.location.reload();//?
 
-    ShowTask();
-
-    console.log(dataScrumBoard)
-
-
-    
 }
-function clearInput(){
-                title.value='';
-                type.value='';
-                Priority.value='';
-                Status.value='';
-                date.value='';
-                Description.value='';
+function clearInput() {
+    title.value = '';
+    type.value = '';
+    Priority.value = '';
+    Status.value = '';
+    date.value = '';
+    Description.value = '';
 }
 
 function ShowTask() {
-    let todo=document.getElementById("to-do-tasks");
-    let inProgressTasks=document.getElementById("in-progress-tasks");
-    let done=document.getElementById("done-tasks");
+    let todo = document.getElementById("to-do-tasks");
+    let inProgressTasks = document.getElementById("in-progress-tasks");
+    let done = document.getElementById("done-tasks");
 
-    
-    for(let i=0;i<dataScrumBoard.length;i++)
-    {
-        if(dataScrumBoard[i].Status==='TO-do'){
-        todo.innerHTML+=
-            `<button class="btn btn-outline-dark col-12">
+
+    for (let i = 0; i < dataScrumBoard.length; i++) {
+        if (dataScrumBoard[i].Status == 'TO-do') {
+            todo.innerHTML +=
+                `<button class="btn btn-outline-dark col-12">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -82,10 +74,10 @@ function ShowTask() {
 								</div>
 							</button>`
         }
-        else if(dataScrumBoard[i].Status==='In-progress')  {
-            inProgressTasks.innerHTML+=
-            
-            `<button class="btn btn-outline-dark col-12">
+        else if (dataScrumBoard[i].Status == 'In-progress') {
+            inProgressTasks.innerHTML +=
+
+                `<button class="btn btn-outline-dark col-12">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -99,9 +91,9 @@ function ShowTask() {
 								</div>
 							</button>`
         }
-        else if(dataScrumBoard[i].Status==='Done'){
-            done.innerHTML+=
-            `<button class="btn btn-outline-dark col-12">
+        else if (dataScrumBoard[i].Status == 'Done') {
+            done.innerHTML +=
+                `<button class="btn btn-outline-dark col-12">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -116,8 +108,8 @@ function ShowTask() {
 							</button>`
         }
     }
-    
 }
+ShowTask();
 
 function editTask(index) {
     // Initialisez task form
@@ -143,11 +135,11 @@ function updateTask() {
     // Fermer Modal form
 
     // Refresh tasks
-    
+
 }
 
 function deleteTask() {
-    
+
 
 }
 
