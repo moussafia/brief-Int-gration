@@ -1,54 +1,58 @@
-/**
- * In this file app.js you will find all CRUD functions name.
- * 
- */
-let title = document.getElementById('title');
-let type = document.querySelector("input[type='radio']:checked");
-let Priority = document.querySelector('#Priority');
-let Status = document.querySelector('#Status');
-let date = document.getElementById('date');
-let Description = document.getElementById('Description');
-let save = document.getElementById('save');
-
-
+    const form =document.forms['task'];
+    let save = document.getElementById('save');
+    let index;
 
 //create task
-let dataScrumBoard;                                       //table pour enregistrer les data
+let dataScrumBoard;         //table pour enregistrer les data
 if (localStorage.scrumBoardFile != null) {
     dataScrumBoard = JSON.parse(localStorage.scrumBoardFile);
 }
 else {
     dataScrumBoard = [];
 }
-
+        tasksCount();
+        ShowTask();
 
 save.onclick = function createTask() {
-
+    
     let addTask = {
-        title: title.value,
-        type: type.value,
-        Priority: Priority.value,
-        Status: Status.value,
-        date: date.value,
-        Description: Description.value,
-        save: save.value,
+        title: form.title.value,
+        type: form.type.value,
+        Priority: form.Priority.value,
+        Status: form.Status.value,
+        date: form.date.value,
+        Description: form.Description.value,
     }
     dataScrumBoard.push(addTask);
 
     //enregistrer les data
     localStorage.setItem('scrumBoardFile', JSON.stringify(dataScrumBoard));
-    clearInput();
+   //reset inputs
+            form.reset();
+            ShowTask();
+
     //affichage dans les tableaux
-    window.location.reload();//?
+
+   ///reloading page
+
 
 }
-function clearInput() {
-    title.value = '';
-    type.value = '';
-    Priority.value = '';
-    Status.value = '';
-    date.value = '';
-    Description.value = '';
+function tasksCount(){
+    let DO_count=0,iP_count=0,Done_count=0;
+    for(i=0;i<dataScrumBoard.length;i++)
+    {
+        if(dataScrumBoard[i].Status=='TO-do')
+            DO_count++;
+        else if(dataScrumBoard[i].Status=='In-progress')
+            iP_count++;
+        else if (dataScrumBoard[i].Status == 'Done')
+            Done_count++
+    }
+    console.log(Done_count);
+    document.getElementById('to-do-tasks-count').innerHTML = "(" + DO_count +")" ;
+    document.getElementById('in-progress-tasks-count').innerHTML= "(" + iP_count +")";
+    document.getElementById('done-tasks-count').innerHTML= "(" + Done_count +")";
+
 }
 
 function ShowTask() {
@@ -60,7 +64,7 @@ function ShowTask() {
     for (let i = 0; i < dataScrumBoard.length; i++) {
         if (dataScrumBoard[i].Status == 'TO-do') {
             todo.innerHTML +=
-                `<button class="btn btn-outline-dark col-12">
+                `<button editTask(${i}) class="btn btn-outline-dark" col-12>
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -77,7 +81,7 @@ function ShowTask() {
         else if (dataScrumBoard[i].Status == 'In-progress') {
             inProgressTasks.innerHTML +=
 
-                `<button class="btn btn-outline-dark col-12">
+                `<button class="btn btn-outline-dark" col-12>
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -93,7 +97,7 @@ function ShowTask() {
         }
         else if (dataScrumBoard[i].Status == 'Done') {
             done.innerHTML +=
-                `<button class="btn btn-outline-dark col-12">
+                `<button class="btn btn-outline-dark" col-12>
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -109,33 +113,16 @@ function ShowTask() {
         }
     }
 }
-ShowTask();
+
 
 function editTask(index) {
-    // Initialisez task form
 
-    // Affichez updates
-
-    // Delete Button
-
-    // Définir l’index en entrée cachée pour l’utiliser en Update et Delete
-
-    // Definir FORM INPUTS
+    console.log(index);
 
     // Ouvrir Modal form
 }
-
 function updateTask() {
-    // GET TASK ATTRIBUTES FROM INPUTS
-
-    // Créez task object
-
-    // Remplacer ancienne task par nouvelle task
-
-    // Fermer Modal form
-
-    // Refresh tasks
-
+   
 }
 
 function deleteTask() {

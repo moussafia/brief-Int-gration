@@ -43,14 +43,13 @@
 					<!-- END page-header -->
 				</div>
 				
-				
 			</div>
 			
 			<div class="row">
 				<div class="col-xl-4 col-md-6 col-sm-12">
 					<div class="">
 						<div class="col-12 To-do">
-							<h4 class="">To do <span id="to-do-tasks-count">(5)</span></h4>
+							<h4 class="">To do <span id="to-do-tasks-count"></span></h4>
 
 						</div>
 						<div class="" id="to-do-tasks">
@@ -62,7 +61,7 @@
 				<div class="col-xl-4 col-md-6 col-sm-12">
 					<div class="">
 						<div class="col-12 In-Progress">
-							<h4 class="">In Progress <span id="in-progress-tasks-count">(4)</span></h4>
+							<h4 class="">In Progress <span id="in-progress-tasks-count"></span></h4>
 
 						</div>
 						<div class="" id="in-progress-tasks">
@@ -74,7 +73,7 @@
 				<div class="col-xl-4 col-md-6 col-sm-12">
 					<div class="">
 						<div class="col-12 Done">
-							<h4 class="">Done (<span id="done-tasks-count">4</span>)</h4>
+							<h4 class="">Done <span id="done-tasks-count"></span></h4>
 
 						</div>
 						<div class="" id="done-tasks">
@@ -96,6 +95,7 @@
 	
 	<!-- TASK MODAL -->  
   <!-- Modal -->
+  <form name="task">
   <div class="modal fade" id="add-task" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
@@ -105,23 +105,23 @@
 		</div>
 		<div class="modal-body">
 		  <label for="title">Title</label><br>
-		  <input class="form-control" type="text" aria-label="default input example" id="title"><br>
+		  <input class="form-control" type="text" name="title" aria-label="default input example" id="title"><br>
 		  <label for="title">Type</label><br>
 		  <div class="form-check">
-			<input class="form-check-input" type="radio" name="type" name="Feature">
+			<input class="form-check-input" type="radio" name="type" value="Feature">
 			<label class="form-check-label" for="flexRadioDefault1">
 			  Feature
 			</label>
 		  </div>
 		  <div class="form-check">
-			<input class="form-check-input" name="type" type="radio" name="flexRadioDefault"  checked>
+			<input class="form-check-input" type="radio" name="type" value="Bug" checked>
 			<label class="form-check-label" for="flexRadioDefault2">
 			  Bug
 			</label>
 		  </div>
 		  <div>
 		  <label for="priority">Priority</label><br>
-		  <select class="form-select" aria-label="Default select example" id="Priority">
+		  <select class="form-select" aria-label="Default select example" id="Priority" name="Priority">
 			<option value="Low">Low</option>
 			<option value="Medium">Medium</option>
 			<option value="High">High</option>
@@ -130,7 +130,7 @@
 		</div>
 		<div>
 			<label for="priority">Status</label><br>
-			<select class="form-select" aria-label="Default select example" id="Status">
+			<select class="form-select" aria-label="Default select example" name="Status" id="Status">
 			  <option value="TO-do">To do</option>
 			  <option value="In-progress">In progress</option>
 			  <option value="Done">Done</option>
@@ -138,11 +138,11 @@
 		  </div>
 		  <div>
 			<label for="date">Date:</label><br>
-			<input type="date" id="date">
+			<input type="date" id="date" name="date">
 		  </div>
 		  <div class="mb-3">
 			<label for="Description" class="col-form-label">Description:</label>
-			<textarea class="form-control" id="Description"></textarea>
+			<textarea class="form-control" name="Description" id="Description"></textarea>
 		  </div>
 			
 
@@ -156,6 +156,7 @@
 	</div>
   </div>
 </div>
+</form>
 	
 	<!-- ================== BEGIN core-js ================== -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
