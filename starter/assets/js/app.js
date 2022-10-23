@@ -44,12 +44,6 @@ save.onclick = function createTask() {
    //reset inputs
             form.reset();
             ShowTask();
-
-    //affichage dans les tableaux
-
-   ///reloading page
-
-
 }
 function tasksCount(){
     let DO_count=0,iP_count=0,Done_count=0;
@@ -65,8 +59,6 @@ function tasksCount(){
     document.getElementById('to-do-tasks-count').innerHTML = "(" + DO_count +")" ;
     document.getElementById('in-progress-tasks-count').innerHTML= "(" + iP_count +")";
     document.getElementById('done-tasks-count').innerHTML= "(" + Done_count +")";
-    
-
 }
 
 function ShowTask() {
@@ -138,16 +130,12 @@ function editTask(index) {
     document.getElementById("save").style.display = "none";
     document.getElementById("Update").style.display = "block";
     document.getElementById("delete").style.display = "block";
-    
-    
-
     form.title.value=dataScrumBoard[index].title;
     form.type.value=dataScrumBoard[index].type;
     form.Priority.value=dataScrumBoard[index].Priority;
     form.Status.value=dataScrumBoard[index].Status;
     form.date.value=dataScrumBoard[index].date;
     form.Description.value=dataScrumBoard[index].Description;
-    
     tmp = index;
 }
 function updateTask() {
@@ -178,4 +166,3 @@ function initTaskForm() {
     deleteAll.style.display='none';
     ShowTask();
 }
-
