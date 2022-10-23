@@ -2,28 +2,32 @@
     let save = document.getElementById('save');
     let Update = document.getElementById('Update');
     let delet = document.getElementById('delete');
+    let deleteAll=document.getElementById('deleteALL');
     let tmp;
 
 //create task
 let dataScrumBoard;         //table pour enregistrer les data
 if (localStorage.scrumBoardFile != null) {
     dataScrumBoard = JSON.parse(localStorage.scrumBoardFile);
+    deleteAll.style.display='inline';
 }
 else {
-
+    deleteAll.style.display='none';
     dataScrumBoard = [];
+   
 }
-        tasksCount();
-        ShowTask();
+tasksCount();
+ShowTask();
 
     function hideButtom(){
+        document.getElementById("form-title").innerHTML="Add Task";
         document.getElementById("Update").style.display = "none";
         document.getElementById("delete").style.display = "none";
         document.getElementById("save").style.display = "block";
     }
 
 save.onclick = function createTask() {
-   
+    deleteAll.style.display='inline';
     let addTask = {
         title: form.title.value,
         type: form.type.value,
@@ -61,6 +65,7 @@ function tasksCount(){
     document.getElementById('to-do-tasks-count').innerHTML = "(" + DO_count +")" ;
     document.getElementById('in-progress-tasks-count').innerHTML= "(" + iP_count +")";
     document.getElementById('done-tasks-count').innerHTML= "(" + Done_count +")";
+    
 
 }
 
@@ -71,12 +76,13 @@ function ShowTask() {
 
     todo.innerHTML = '';
     inProgressTasks.innerHTML = '';
-    todo.innerHTML = '';
+    done.innerHTML = '';
 
+    // if(local)
     for (let i = 0; i < dataScrumBoard.length; i++) {
         if (dataScrumBoard[i].Status == 'TO-do') {
             todo.innerHTML +=
-                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12  "  data-bs-toggle="modal" data-bs-target="#add-task">
+                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12  item" data-bs-toggle="modal" data-bs-target="#add-task">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -93,7 +99,7 @@ function ShowTask() {
         else if (dataScrumBoard[i].Status == 'In-progress') {
             inProgressTasks.innerHTML +=
 
-                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12" data-bs-toggle="modal" data-bs-target="#add-task">
+                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12 item" data-bs-toggle="modal" data-bs-target="#add-task">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -109,7 +115,7 @@ function ShowTask() {
         }
         else if (dataScrumBoard[i].Status == 'Done') {
             done.innerHTML +=
-                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12" data-bs-toggle="modal" data-bs-target="#add-task">
+                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12 item" data-bs-toggle="modal" data-bs-target="#add-task">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -124,10 +130,11 @@ function ShowTask() {
 							</button>`
         }
     }
+    tasksCount();
 }
 
-
 function editTask(index) {
+    document.getElementById("form-title").innerHTML="Edit Task";
     document.getElementById("save").style.display = "none";
     document.getElementById("Update").style.display = "block";
     document.getElementById("delete").style.display = "block";
@@ -142,10 +149,6 @@ function editTask(index) {
     form.Description.value=dataScrumBoard[index].Description;
     
     tmp = index;
-    
-    
-
-    // Ouvrir Modal form
 }
 function updateTask() {
     
@@ -156,7 +159,7 @@ function updateTask() {
     dataScrumBoard[tmp].date=form.date.value;
     dataScrumBoard[tmp].Description=form.Description.value;
     localStorage.scrumBoardFile=JSON.stringify(dataScrumBoard);
-
+    window.location.reload();
 
     ShowTask();
 }
@@ -166,13 +169,13 @@ function deleteTask() {
     dataScrumBoard.splice(tmp,1);
     localStorage.scrumBoardFile=JSON.stringify(dataScrumBoard);
     ShowTask();
-    console.log(tmp);
-
+    window.location.reload()
 }
 
 function initTaskForm() {
-   localStorage.clear();
-   splice(0);
-   ShowTask();
+    localStorage.clear();
+    dataScrumBoard.splice(0);
+    deleteAll.style.display='none';
+    ShowTask();
 }
 
