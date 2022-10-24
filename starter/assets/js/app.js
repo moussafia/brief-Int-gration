@@ -74,7 +74,7 @@ function ShowTask() {
     for (let i = 0; i < dataScrumBoard.length; i++) {
         if (dataScrumBoard[i].Status == 'TO-do') {
             todo.innerHTML +=
-                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12  item" data-bs-toggle="modal" data-bs-target="#add-task">
+                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12" data-bs-toggle="modal" data-bs-target="#add-task">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -91,7 +91,7 @@ function ShowTask() {
         else if (dataScrumBoard[i].Status == 'In-progress') {
             inProgressTasks.innerHTML +=
 
-                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12 item" data-bs-toggle="modal" data-bs-target="#add-task">
+                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12" data-bs-toggle="modal" data-bs-target="#add-task">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
@@ -107,7 +107,7 @@ function ShowTask() {
         }
         else if (dataScrumBoard[i].Status == 'Done') {
             done.innerHTML +=
-                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12 item" data-bs-toggle="modal" data-bs-target="#add-task">
+                `<button onclick='editTask(${i})' class="btn btn-outline-dark col-12" data-bs-toggle="modal" data-bs-target="#add-task">
 								<div>
 									<div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i> ${dataScrumBoard[i].title}</div>
 									<div>
